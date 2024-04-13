@@ -1,15 +1,49 @@
+import React, {useState} from 'react'; 
 import './App.css';
+import FlashCardList from './FlashCardList';
 
 function App() {
+  const [flashcards, setFlashCards] = useState(sample_flashcards); 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>
-          ServiceNow Flash Cards 🧐 
-        </h1>
-      </header>
-    </div>
+    <FlashCardList flashcards ={flashcards} />
   );
 }
+
+
+const sample_flashcards = [
+  {
+    id: 1, 
+    question: "What is CSA?",
+    answer: 'Certified ServiceNow Administrator',
+    options: [
+      'wrong',  
+      'wrong',
+      'correct'  
+      ]
+  }, 
+  {
+    id: 2, 
+    question: "What is CSA?",
+    answer: 'Certified ServiceNow Administrator',
+    options: [
+      'wrong',  
+      'wrong',
+      'correct'  
+      ]
+  },
+  {
+    id: 3, 
+    question: "What is CSA?",
+    answer: 'Certified ServiceNow Administrator',
+    options: [
+      'wrong',  
+      'wrong',
+      'correct'  
+      ]
+  }
+
+]
+
+
 
 export default App;
