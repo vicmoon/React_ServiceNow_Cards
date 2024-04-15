@@ -1,0 +1,16 @@
+body{
+    background-color: #d9bda5;
+    color: black;
+}
+
+.card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.card .front, 
+.card .back{
+  position: absolute;
+}
