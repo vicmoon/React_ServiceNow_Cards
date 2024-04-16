@@ -8,6 +8,43 @@ body{
   margin: 1rem 2rem;
 }
 
+.header{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: aliceblue;
+  box-shadow:0 0 5px 2px rgb(24, 23, 23) ;
+  padding: 0 1.5rem;
+
+
+}
+
+.form-group{
+  display: flex;
+  flex-direction: column;
+  margin: .5rem;
+
+}
+
+.form-group >label {
+  color: #777;
+  font-size: 20px;
+  margin-bottom: .30rem;
+}
+
+.btn{
+  background-color: rgb(110, 110, 204);
+  padding: 10px;
+  border-radius: 10px;
+  color: beige;
+}
+
+
+.btn:hover{
+  background-color: blue;
+
+}
 .card-grid{
   display: grid;
   align-items: center;

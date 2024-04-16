@@ -1,34 +1,23 @@
-import React, {useState, useEffect} from 'react'; 
+import React, {useState, useEffect, useRef} from 'react'; 
 import './App.css';
 import FlashCardList from './FlashCardList';
 import axios from 'axios'; 
 
 function App() {
-  const [flashcards, setFlashCards] = useState(sample_flashcards);
+  const [flashcards, setFlashCards] = useState([]);
+  const[categories, setCategories] = useState([]); 
+  const categoryEl = useRef();
+  const amountEL = useRef(); 
+  useEffect(() => {
+    axios.get('https://opentdb.com/api_category.php')
+    .then(res => {
+      setCategories(res.data.trivia_categories); 
+    })
+
+  }, [])
   
   useEffect(() => {
-    axios.get('https://opentdb.com/api.php?amount=20&category=15')
-      .then(res => {
-        console.log(res.data);
-        setFlashCards(res.data.results.map((question, index) => {
-          const answer = decodeString(question.correct_answer)
-          const option = [
-            ...question.incorrect_answers.map(a => decodeString(a)), 
-            answer
-          ]
-          return {
-            id: `${index} = ${Date.now()}`,
-            question: decodeString(question.question),
-            answer: decodeString(answer),
-            options: option.sort(() => Math.random() - .5) // random between 0 1, 50% negative, %0% positive
-          }
-        }))
-        // Assuming `res.data` contains the flashcards you want to set
-        
-      })
-      .catch(error => {
-        console.error('Error fetching flashcards:', error);
-      });
+  
   }, []); // Empty dependency array means this effect runs only once, similar to componentDidMount
   
 
@@ -38,48 +27,67 @@ function App() {
     return textArea.value
   }
 
-  return (
-    <div className='container'>
-    <FlashCardList flashcards ={flashcards} />
-    </div>
-  );
-}
+
+  function handleSubmit(e){
+    e.preventDefault();
+    axios.get('https://opentdb.com/api.php', {
+      params:{
+        amount: amountEL.current.value,
+        category: categoryEl.current.value
+      }
+  })
+    .then(res => {
+      console.log(res.data);
+      setFlashCards(res.data.results.map((question, index) => {
+        const answer = decodeString(question.correct_answer)
+        const option = [
+          ...question.incorrect_answers.map(a => decodeString(a)), 
+          answer
+        ]
+        return {
+          id: `${index} = ${Date.now()}`,
+          question: decodeString(question.question),
+          answer: decodeString(answer),
+          options: option.sort(() => Math.random() - .5) // random between 0 1, 50% negative, %0% positive
+        }
+      }))
+      // Assuming `res.data` contains the flashcards you want to set
+      
+    })
+    .catch(error => {
+      console.error('Error fetching flashcards:', error);
+    });
 
 
-const sample_flashcards = [
-  {
-    id: 1, 
-    question: "What is CSA?",
-    answer: 'Certified ServiceNow Administrator',
-    options: [
-      'wrong',  
-      'wrong',
-      'correct'  
-      ]
-  }, 
-  {
-    id: 2, 
-    question: "What is CSA?",
-    answer: 'Certified ServiceNow Administrator',
-    options: [
-      'wrong',  
-      'wrong',
-      'correct'  
-      ]
-  },
-  {
-    id: 3, 
-    question: "What is CSA?",
-    answer: 'Certified ServiceNow Administrator',
-    options: [
-      'wrong',  
-      'wrong',
-      'correct'  
-      ]
   }
 
-]
 
+  return (
+    <> 
+    <form className='header' onSubmit={handleSubmit}>
+     <div className='form-group'>
+       <label htmlFor='category'>Category</label>
+        <select id='category' ref={categoryEl}>
+          {categories.map(category => {
+            return <option value={category.id} key= {category.id}>{category.name}</option>
+          })}
+        </select>
+     </div>
+     <div className='form-group'>
+        <label htmlFor='amount' >Amount Questions </label>
+        <input type='number' id='amount' min= '1' step='1' defaultValue={10} ref= {amountEL}></input>
+     </div>
+     <div className='form-group'>
+       <button className='btn'> Generate </button>
+     </div>
+     
+    </form>
+      <div className='container'>
+      <FlashCardList flashcards ={flashcards} />
+      </div>
+    </>
+  );
+}
 
 
 export default App;
