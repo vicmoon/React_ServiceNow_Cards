@@ -66,7 +66,7 @@ function App() {
     <> 
     <form className='header' onSubmit={handleSubmit}>
      <div className='form-group'>
-       <label htmlFor='category'>Category</label>
+       <label htmlFor='category'> Category</label>
         <select id='category' ref={categoryEl}>
           {categories.map(category => {
             return <option value={category.id} key= {category.id}>{category.name}</option>
@@ -74,8 +74,8 @@ function App() {
         </select>
      </div>
      <div className='form-group'>
-        <label htmlFor='amount' >Amount Questions </label>
-        <input type='number' id='amount' min= '1' step='1' defaultValue={10} ref= {amountEL}></input>
+        <label htmlFor='amount' > Number Questions </label>
+        <input type='number' id='amount' min= '1' step='1' defaultValue={5} ref= {amountEL}></input>
      </div>
      <div className='form-group'>
        <button className='btn'> Generate </button>

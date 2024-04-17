@@ -1,6 +1,9 @@
 body{
-    background-color: #d9bda5;
+    background-color: #332941;
     margin: 0;
+    font-family: "Share Tech", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 
 }
 .container{
@@ -10,15 +13,29 @@ body{
 
 .header{
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
-  background-color: aliceblue;
+  background-color: #F8E559;
   box-shadow:0 0 5px 2px rgb(24, 23, 23) ;
   padding: 0 1.5rem;
 
-
 }
+
+
+input, label, select{
+ text-align: center;
+ background-color: aquamarine;
+ border-radius: 20px;
+ border-style:dotted;
+ border-color: beige;
+ 
+}
+
+select, input{
+ padding: 5px;
+}
+
 
 .form-group{
   display: flex;
@@ -28,7 +45,7 @@ body{
 }
 
 .form-group >label {
-  color: #777;
+  color: #211951;
   font-size: 20px;
   margin-bottom: .30rem;
 }
@@ -38,11 +55,15 @@ body{
   padding: 10px;
   border-radius: 10px;
   color: beige;
+  border-style:dotted;
+  border-color: beige;
+ 
 }
 
 
 .btn:hover{
-  background-color: blue;
+  background-color:  aquamarine;
+  color: black;
 
 }
 .card-grid{
@@ -58,15 +79,18 @@ body{
     align-items: center;
     position: relative;
     padding: 10px;
+    border-style:outset;
     border-radius: .25rem;
     box-shadow: 0 0 5px 2px rgb(107, 102, 102);
-    background-color: whitesmoke;
+    background-color: #F8E559;
     height: 200px;
     transform:perspective(1000px) rotateY(var(--rotate-y, 0)) 
     translateY(var(--translate-y,0));
     transform-style: preserve-3d;
     transition: 200ms;
     cursor: pointer;
+    border-style:dotted;
+  border-color: beige;
     
 }
 .card.flip{
@@ -101,7 +125,7 @@ body{
 
 .option{
   margin-top: .20rem;
-  color: rgb(75, 63, 63);
+  color: #0E46A3;
   font-size: .90rem;
 
 }
