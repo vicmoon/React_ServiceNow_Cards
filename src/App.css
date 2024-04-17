@@ -4,12 +4,24 @@ body{
     font-family: "Share Tech", sans-serif;
   font-weight: 400;
   font-style: normal;
+  margin: 0 auto;
 
 }
-.container{
-  max-width: 900px;
-  margin: 1rem 2rem;
+
+.container {
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Horizontally center the content */
 }
+
+.content {
+  max-width: 900px; /* Set the maximum width */
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* Add other styles as needed */
+}
+
 
 .header{
   display: flex;
@@ -66,12 +78,7 @@ select, input{
   color: black;
 
 }
-.card-grid{
-  display: grid;
-  align-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-}
+
 
 .card{
     display: flex;
