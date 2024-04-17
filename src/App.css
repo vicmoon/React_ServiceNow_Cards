@@ -139,7 +139,12 @@ select, input{
 
 .option:first-child{
   margin-top: 0;
-
+}
+@media screen and (max-width: 800px) {
+  .content {
+    grid-template-columns: minmax(200px, 1fr); /* Two columns of equal width */
+    gap: 10px; /* Adjust gap as needed */
+  }
 }
 
 @media screen and (max-width: 600px) {
