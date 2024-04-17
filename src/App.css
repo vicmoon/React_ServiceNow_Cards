@@ -14,7 +14,7 @@ body{
 }
 
 .content {
-  max-width: 900px; /* Set the maximum width */
+  max-width: 1000px; /* Set the maximum width */
   display: grid;
   gap: 10px;
   margin-top: 20px;
@@ -140,4 +140,11 @@ select, input{
 .option:first-child{
   margin-top: 0;
 
+}
+
+@media screen and (max-width: 600px) {
+  .content {
+    grid-template-columns: minmax(200px, 1fr); /* Adjust column width for smaller screens */
+    padding: 5px; /* Optional: Adjust padding or other styles as needed for smaller screens */
+  }
 }
