@@ -29,6 +29,7 @@ function App() {
 
 
   function handleSubmit(e){
+    console.log(e); 
     e.preventDefault();
     axios.get('https://opentdb.com/api.php', {
       params:{
